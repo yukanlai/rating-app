@@ -1,0 +1,29 @@
+packages:
+add
+materialize:materialize
+aldeed:collection2
+session
+accounts-password
+fourseven:scss
+barbatus:stars-rating
+fortawesome:fontawesome
+
+check
+
+remove
+autopublish
+insecure
+
+
+UserProfiles.update({_id: "5754ea78737b64b246696c13"},{$set:{'ratings.$.author': 
+"WEvnbdaTSNHbub6e6",'ratings.$.rating': 4,'ratings.$.mutable': false}},{multi: true});
+
+RatingsList.insert({
+author:"fakeId", owner:"anotherFakeId", rating:4, createdAt:new Date(), mutable: false});
+
+RatingsList.findOne({$and: [{owner: "anotherFakeId"}, {author: "fakeId"}]}).rating
+
+
+0951964767
+
+

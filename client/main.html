@@ -1,0 +1,136 @@
+<head>
+	<title>Simple Rating App</title>
+</head>
+
+<body>
+<div id="page-wrapper">
+	<header class="row">
+		<div class="col s12 center">
+			<h1>If languages were raters..</h1>
+		</div>
+	</header>
+
+	<div class="section">
+		{{> account}}
+	</div>
+	<section class="container">
+		<div class="row">
+			<ul class="tabs">
+				<li class="tab"><a class="active" href="#byU">Ratings By You</a></li>
+				<li class="tab"><a href="#aboutU">Ratings About You</a></li>
+			</ul>
+			<div id="byU" class="col s10 offset-s1">
+				{{#unless currentUser}}
+					<blockquote>Please login to start rating</blockquote>
+				{{/unless}}
+				{{> ratingboard}}
+			</div>
+			<div id="aboutU" class="col s10 offset-s1">
+				{{#if currentUser}}
+					{{> myratings}}
+				{{else}}
+					<blockquote>Please login to see your ratings</blockquote>
+				{{/if}}
+			</div>
+			
+		</div>
+	</section>
+
+	<footer>
+		<p class="right">&copy; 2016 Yu-Kan LAI</p>
+	</footer>
+</div>
+
+<div>
+	{{> login}}
+	{{> register}}
+</div>
+</body>
+
+<!-- Template starts here-->
+<template name="account">
+	<div class="center">
+		{{#if currentUser}}
+			<button id="logoutBtn" title="Logout" class="btn-floating btn-large red lighten-1"><i class="fa fa-sign-out"></i></button>
+		{{else}}
+			<button id="registerBtn" title="Register" class="btn-floating btn-large red lighten-1"><i class="fa fa-edit"></i></button>
+			<button id="loginBtn" title="Login" class="btn-floating btn-large red lighten-1"><i class="fa fa-sign-in"></i></button>
+		{{/if}}
+	</div>
+</template>
+
+<template name="login">
+	<div id="login-dialog">
+		<h4 class="form-title">Login</h4>
+		<form class="login">
+			<div class="input-field">
+				<input id="email" type="email" required>
+				<label for="email">Email</label>
+			</div>
+			<div class="input-field">
+				<input id="password" type="password" required>
+				<label for="password">Password</label>
+			</div>
+			<div class="row">
+				<input type="submit" class="red lighten-3 btn waves-effect waves-light" value="Login">
+				<button id="cancelLogin" class="waves-effect waves-default btn-flat">Cancel</button>
+			</div>
+		</form>
+	</div>
+</template>
+
+<template name="register">
+	<div id="register-dialog">
+		<h4 class="form-title">Register</h4>
+		<form class="register">
+			<div class="input-field">
+				<input id="username" type="text" required>
+				<label for="username">Username</label>
+			</div>
+			<div class="input-field">
+				<input id="email" type="email" required>
+				<label for="email">Email</label>
+			</div>
+			<div class="input-field">
+				<input id="password" type="password" required>
+				<label for="password">Password</label>
+			</div>
+			<input type="submit" class="red lighten-3 btn waves-effect waves-light" value="Register">
+			<button id="cancelRegister" class="waves-effect waves-default btn-flat">Cancel</button>
+		</form>
+	</div>
+</template>
+
+
+<!-- Section Content -->
+<template name="ratingboard">
+	<ul class="collection">	
+		{{#each user}}
+			<li class="collection-item">
+				{{username}}
+				{{#if currentUser}}
+					<span class="secondary-content">
+						{{#with ratingExisted}}
+							{{> starsRating id=owner rating=rating mutable=mutable class="stars" size=15}}
+						{{/with}}
+					</span>
+				{{/if}}
+			</li>
+		{{/each}}
+	</ul>
+</template>
+
+<template name="myratings">
+	<ul class="collection">
+		{{#each data}}
+		<li class="collection-item">
+			from {{authorName}} :
+			<span class="secondary-content">
+				{{> starsRating rating=rating size=15}}
+			</span>
+		</li>
+		{{/each}}
+	</ul>
+</template>
+
+

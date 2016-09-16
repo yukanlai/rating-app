@@ -1,0 +1,33 @@
+$title-dark: #0277bd;
+$title-light: #b3e5fc;
+$highlight-light: #ef9a9a;
+$shadow: #e3f2fd;
+
+/* label color */
+.input-field label {
+  	color: $title-dark;
+}
+/* label focus color */
+.input-field input[type=email]:focus + label {
+  	color: $title-dark;
+}
+/* label underline focus color */
+.input-field input[type=email]:focus {
+  	border-bottom: 2px solid $title-light;
+  	box-shadow: 0 1px 0 0 $shadow;
+}
+
+.input-field input[type=password]:focus + label {
+  	color: $title-dark;
+}
+.input-field input[type=password]:focus {
+  	border-bottom: 2px solid $title-light;
+  	box-shadow: 0 1px 0 0 $shadow;
+}
+.input-field input[type=text]:focus + label {
+  	color: $title-dark;
+}
+.input-field input[type=text]:focus {
+  	border-bottom: 2px solid $title-light;
+  	box-shadow: 0 1px 0 0 $shadow;
+}

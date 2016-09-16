@@ -1,0 +1,45 @@
+$back-dark: #212121;
+$title-light: #b3e5fc;
+$title-dark: #0277bd;
+$highlight-light: #ef9a9a;
+$hightlight-dark: #ff5252;
+$border: #0091ea;
+
+@mixin border-radius($radius){
+	-webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:500);
+
+html {
+	font-family: 'Raleway', Roboto, sans-serif;
+}
+
+body{
+	background-color: $back-dark;
+	color: $title-light;
+}
+
+section{
+	border: 5px solid $border;
+	background-color: white;
+	color: $back-dark;
+	padding: 50px;
+	@include border-radius(4px);
+}
+
+.stars{
+	&.active{
+	color: #ffd54f;
+	}
+	&.current-rating{
+	color: #fbc02d;
+	}
+}
+
+footer{
+	padding: 30px 50px 60px 0;
+}

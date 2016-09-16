@@ -1,0 +1,107 @@
+@mixin border-radius($radius){
+	-webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+@mixin transform($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  transform: $val;
+}
+@mixin opacity($val){
+	-webkit-filter: opacity($val);
+	-moz-filter: opacity($val);
+	-o-filter: opacity($val);
+	-ms-filter: opacity($val);
+	filter: opacity($val);
+}
+
+$back-dark: #212121;
+$title-light: #b3e5fc;
+$title-dark: #0277bd;
+$highlight-light: #ef9a9a;
+$hightlight-dark: #ff5252;
+$border: #0091ea;
+
+@mixin _wrapperAction{
+	/* De-color */
+	@include opacity(30%);
+	/* Recede */
+	@include transform (scale(0.9));	
+}
+@mixin _modalAction{
+	opacity: 1;
+	visibility: visible;
+
+	//pointer-events: auto;
+}
+@mixin _modalDefault{
+	background-color: white;
+	position: fixed;
+	min-width: 300px;
+	text-align: center;
+	padding: 30px;
+	border: 5px solid $border;
+	@include border-radius(4px);
+	color: $hightlight-dark;
+
+	opacity: 0;
+	visibility: hidden;
+	//pointer-events: none;
+
+	.form-title{
+		color: $title-light;
+	}
+}
+
+body{
+	@include transform(translateZ(0));
+}
+
+/* Default State for Modal*/
+#login-dialog{
+	@include _modalDefault;
+	width: 30%;
+	top: 35%;
+	left: 35%;
+}
+#register-dialog{
+	@include _modalDefault;
+	width: 40%;
+	top: 30%;
+	left: 30%;
+}
+
+/* Active State for Modal*/
+.loginIsOpen{
+	#page-wrapper{
+		@include _wrapperAction;
+	}
+	#login-dialog{
+		@include _modalAction;
+	}
+}
+.registerIsOpen{
+	#page-wrapper{
+		@include _wrapperAction;
+	}
+	#register-dialog{
+		@include _modalAction;
+	}
+}
+
+/* Transitions */
+#page-wrapper, #modal-dialog {
+	@include transition(all 0.4s ease);
+}
+
+
